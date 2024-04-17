@@ -1,0 +1,24 @@
+version: '1'
+services:
+  app:
+    container_name: medida_solution
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "5000:5000"
+    volumes:
+      - "./:/app"
+    environment:
+      HOST_IP: host.docker.internal  # Set the host IP to the name of the OpenAPI mock service
+
+  openapi_mock:
+    container_name: openapi_mock_solution
+    image: muonsoft/openapi-mock
+    volumes:
+      - ./docs/apispecs/3rd-party-api:/etc/openapi
+    environment:
+      OPENAPI_MOCK_SPECIFICATION_URL: '/etc/openapi/openapi.yaml'
+      OPENAPI_MOCK_USE_EXAMPLES: 'if_present'
+    ports:
+      - "9000:8080"
