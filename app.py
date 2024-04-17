@@ -33,7 +33,7 @@ def fetch_team_rankings_from_third_party_api(league):
     # URL of the team rankings endpoint
     api_url = f'http://{HOST}:9000/{league}/team-rankings'
 
-    # Example: Make a GET request to the third-party API to retrieve team rankings data
+    # Make a GET request to the third-party API to retrieve team rankings data
     response = requests.get(api_url)
 
     # Check if the request was successful (status code 200)
